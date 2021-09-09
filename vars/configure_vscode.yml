@@ -1,0 +1,47 @@
+---
+# This file has the custom configurations for:
+# configure_vscode
+
+vscode_repo:
+  - { enabled: True,  state: 'present', name: 'VSCode',
+      description: 'Visual Studio Code',
+      repo: 'https://packages.microsoft.com/yumrepos/vscode', 
+      gpgcheck: '1', 
+      gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc' }
+
+vscode_workspaces_folder: "{{ ansible_facts['user_dir'] }}/.config/Code/Workspaces"
+vscode_workspaces_config_file: "workspace.json"
+
+# The "installed" parameter determines if the extension will be installed or removed.
+# Note that if your VSCode is opened, may be needed to restart it to commit some
+# extensions changes. Be conservative with extensions because every single new extension
+# is a extra load to your VSCode. You probably want to increase its efficiency instead of
+# making it slower. But, if including extensions, organize them by reasonable categories
+# and alphabetically within categories.
+vscode_extensions:
+  # Extensions to avoid typos and allow better comments
+  - { enabled: True,  installed: True,  name: 'adamvoss.vscode-languagetool-en' }
+  - { enabled: True,  installed: True,  name: 'adamvoss.vscode-languagetool' }
+  - { enabled: True,  installed: True,  name: 'streetsidesoftware.code-spell-checker' }
+  # Extensions for specific languages and formats
+  - { enabled: True,  installed: True,  name: 'docsmsft.docs-markdown' }
+  - { enabled: True,  installed: True,  name: 'golang.Go' }
+  - { enabled: True,  installed: True,  name: 'laurenttreguier.rpm-spec' }
+  - { enabled: True,  installed: True,  name: 'maelvalais.autoconf' }
+  - { enabled: True,  installed: True,  name: 'ms-azuretools.vscode-docker' }
+  - { enabled: True,  installed: True,  name: 'ms-python.python' }
+  - { enabled: True,  installed: True,  name: 'ms-vscode.cmake-tools' }
+  - { enabled: True,  installed: True,  name: 'ms-vscode.cpptools' }
+  - { enabled: True,  installed: True,  name: 'xaver.clang-format' }
+  # Extensions for better visualization
+  - { enabled: True,  installed: True,  name: 'coenraads.bracket-pair-colorizer-2' }
+  - { enabled: True,  installed: True,  name: 'eamodio.gitlens' }
+  - { enabled: True,  installed: True,  name: 'ggbecker.content-navigator' }
+  - { enabled: True,  installed: True,  name: 'leodevbro.blockman' }
+  - { enabled: True,  installed: True,  name: 'vscode-icons-team.vscode-icons' }
+
+# You can have more folders in the same Workspace or more Workspaces.
+# In this case, we are including the "main_dir" folder in the existing workspace.
+vscode_workspaces:
+  - { enabled: True, state: 'directory', action: 'add', name: 'OpenSCAP', path: '{{ base_dir }}' }
+...

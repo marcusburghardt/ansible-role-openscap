@@ -1,0 +1,86 @@
+---
+# defaults file for ansible-role-openscap
+
+# This granular approach make the role more powerful.
+# Observe the first letter of True or False (uppercase).
+# Some tasks need admin permissions. This will be done with "become" parameter
+# of Ansible. The default method is "sudo". So, ensure your username has sudo
+# permissions to install packages and change some system files (repos).
+# Then, you can call the ansible-playbook command with the -K option.
+available_tasks:
+  - { enabled: True,  name: 'install_packages' }  # Requires -K option
+  - { enabled: True,  name: 'configure_git' }
+  - { enabled: True,  name: 'configure_env' }
+  - { enabled: True,  name: 'populate_env' }
+  - { enabled: True,  name: 'configure_labs' }
+  - { enabled: True,  name: 'configure_vscode' }  # Requires -K option
+  - { enabled: True,  name: 'install_python_modules' }
+  
+# Everything created by this role will be limited to this directory scope,
+# with exceptions to the users and OS specific settings.
+# The base_dir should not be modified manually and are used as reference.
+base_dir: "{{ ansible_facts['user_dir'] }}/OpenSCAP"
+
+# This directory will keep repositories of type "main" (see below). These
+# repositories are not expected to be changed. They are usually used as
+# reference, for local quick tests or even for some auxiliary tools.
+upstream_dir: "{{ base_dir }}/Upstream"
+
+# Here is where you get your hands dirty. :)
+# Once you create your fork, as explained in the STARTGUIDE.md, you only have
+# to inform it in your playbook, more specifically in the "git_repos" list.
+forks_dir: "{{ base_dir }}/Forks"
+
+# There are some interesting labs to immerse in the OpenSCAP ecosystem.
+# For these labs VMs are necessary. This role makes this easier for you.
+# The same VMs are useful for testing, as also mentioned in the STARTGUIDE.md.
+labs_dir: "{{ base_dir }}/Labs"
+
+# Adjust properly to your environment. Username and email defined in git
+# settings will be visible in your public commits.
+git_username: 'Name Surname'
+git_email: 'myemail@mydomain.com'
+git_editor: 'vim'
+# For Windows: true
+# For Linux or macOS: input
+git_autocrlf: 'input'
+
+# When working with many branches it is useful to see the current branch in the PS1
+# environment variable. If enabled this variable below, the PS1 will get a nice
+# and simple update which can save a lot of time or "avoid avoidable mistakes". :)
+# However, you may not want this for any reason. So, it is disabled by default.
+ps1_update: False
+
+# These repositories are usually used to work with OpenSCAP.
+# For this environment, the role is using three "types" of repositories:
+# - main: Repositories with this "type" are cloned to the "Upstream" folder.
+#         It is not expected that you work directly on them. Due that they are
+#         disabled by default. However, feel free to enable them if you need a
+#         quick reference or want to execute fast tests without changes in your
+#         fork. It is your call. :)
+# - fork: Repositories with this "type" are cloned to the "Forks" folder.
+#         If you want to contribute with the projects, it is recommended that
+#         you fork the desired repository and send PR from the fork to the
+#         upstream. I also highly recommend to only make changes on new branches
+#         instead of working the master branch of your fork. This will make
+#         your life much easier. ;)
+# - lab:  Repositories with this "type" are cloned to the "Labs" folder.
+#         Usually you don't need these labs, but if you are new in the OpenSCAP
+#         projects and would like to get aware in a hands-on approach, you should
+#         try these labs once. More instructions regarding the labs are provided
+#         in INSTRUCTIONS_LABS.md.
+git_repos:
+  - { enabled: False, type: 'main', name: 'ComplianceAsCode->content',
+      repo: 'https://github.com/ComplianceAsCode/content.git',
+      dest: 'ComplianceAsCode/content' }
+
+  - { enabled: False, type: 'lab', name: 'RedHatDemos->SecurityDemos',
+      repo: 'https://github.com/RedHatDemos/SecurityDemos.git',
+      dest: 'RedHatDemos/SecurityDemos' }
+
+  - { enabled: False, type: 'fork', name: 'Project(fork)->Project',
+      repo: 'https://github.com/mygithubid/project.git',
+      dest: 'Project/repository',
+      remote: 'https://github.com/Project/repository.git',
+      remote_name: 'upstream' }
+...

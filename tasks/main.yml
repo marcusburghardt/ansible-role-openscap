@@ -1,0 +1,14 @@
+---
+# main tasks file for ansible-role-openscap
+# General and common requirement
+- name: "{{ role_name }} | main | Add the OS specific variables"
+  include_vars: "{{ ansible_facts['os_family']|lower }}.yml"
+
+# Call extra tasks
+- name: "{{ role_name }} | main | Include Extra Tasks"
+  include: extras.yml object="{{ task }}"
+  loop: '{{ available_tasks }}'
+  loop_control:
+    loop_var: task
+  when: object.enabled
+...

@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Marcus Burghardt
+  description: Role for quickly prepare a Development Environment for OpenSCAP projects.
+  license: MPL
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+  galaxy_tags:
+    - development
+    - devop
+    - openscap
+    - complianceascode
+dependencies: []

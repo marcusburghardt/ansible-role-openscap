@@ -1,0 +1,66 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Check if you have active repositories of type lab"
+  debug:
+    msg: "It is necessary to ensure the {{ forks_dir }} directory"
+  register: active_lab_repos
+  when: "(git_repos 
+    | selectattr('enabled', 'search', 'True')
+    | selectattr('type', 'search', 'lab')
+    | list )"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the {{ dir_labs }} directory"
+  file:
+    path: '{{ labs_dir }}'
+    state: directory
+    mode: '0755'
+  register: result_labs_dir
+  when:
+    - result_base_dir is success
+    - active_lab_repos is not skipped
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the labs repositories are updated"
+  git:
+    repo: '{{ item.repo }}'
+    dest: '{{ labs_dir }}/{{ item.dest }}'
+    clone: yes
+    update: yes
+  loop: '{{ git_repos }}'
+  register: result_git_labs
+  when:
+    - item.enabled
+    - item.type == "lab"
+    - result_labs_dir is success
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the test VMs Vagrant files"
+  copy:
+    dest: '{{ labs_dir }}'
+    mode: '0664'
+    src: "{{ role_path }}/files/VMs"
+    force: yes
+    backup: yes
+  register: result_vagrant_file
+  when:
+    - result_labs_dir is success
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the VMs instructions files"
+  copy:
+    dest: '{{ labs_dir }}'
+    mode: '0664'
+    src: "{{ role_path }}/files/{{ item }}"
+    force: yes
+    backup: yes
+  loop: '{{ vms_instructions_files }}'
+  register: result_vms_instructions_files
+  when:
+    - result_labs_dir is success
+
+- name: "{{ role_name }} | {{ task.name }} | To work with VMs read the instructions files first"
+  debug:
+    msg:
+      - "Please, read the information and follow the instructions in the {{ item }} file."
+  loop: '{{ vms_instructions_files }}'
+  when:
+    - result_vagrant_file is success
+    - result_vms_instructions_files is success
+
+...

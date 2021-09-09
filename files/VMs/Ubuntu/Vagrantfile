@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # VMs will be created using libvirt, with 2GB of RAM and 2 vcpus
+  config.vm.provider "libvirt" do |libvirt|
+    libvirt.memory = "2048"
+    libvirt.cpus = 2
+    libvirt.default_prefix = "cac_"
+    libvirt.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
+  end
+
+  # This script will be executed for all VMs for general customization.
+  # If you want to customize something in your VM during its provisioning, here
+  # is the place. You can write shell script language between "-SCRIPT" and "SCRIPT".
+  # This will be executed inside the VM, post-installation.
+  ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
+  $bootstrap = <<-SCRIPT
+  mkdir -p touch /root/.ssh
+  echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+  echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+  useradd -G adm admin && echo "admin:admin123" | chpasswd
+  apt install openscap-daemon tar qemu-guest-agent openssh-client openssh-server auditd -y
+  SCRIPT
+  config.vm.provision "shell", inline: $bootstrap
+
+  # Here we are actually defining the Box image and the VM name to be provisioned.
+  # If you want another version, you can change here.
+  VM_NAME = "ubuntu2004"
+  VM_BOX = "generic/ubuntu2004"
+
+  config.vm.define VM_NAME do |ubuntu|
+    ubuntu.vm.box = VM_BOX
+    ubuntu.vm.hostname = VM_NAME
+  end
+
+end

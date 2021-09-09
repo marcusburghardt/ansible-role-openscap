@@ -1,0 +1,17 @@
+---
+# This file has the custom variables for:
+# configure_env.yml
+
+# This module will increment the PATH environment for the useful commands
+path_env:
+  - { enabled: False,  name: 'just informative name',
+      path: '{{ upstream_dir }}/project-tools/bin' }
+
+# Variables related to "configure_env" module
+user_env_file: "{{ ansible_facts['user_dir'] }}/.bashrc"
+
+# This module will increment the PYTHONPATH environment for "utils" tools
+#pythonpath_env:
+#  - { enabled: False,  name: 'Content Specific Python Modules',
+#      path: '{{ upstream_dir }}/ComplianceAsCode/content/utils' }
+...

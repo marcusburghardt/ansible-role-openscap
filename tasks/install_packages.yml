@@ -1,0 +1,24 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure the desired Linux repositories"
+  become: yes
+  yum_repository:
+    name: '{{ item.name }}'
+    description: '{{ item.description }}'
+    baseurl: '{{ item.repo }}'
+    gpgcheck: '{{ item.gpgcheck }}'
+    gpgkey: '{{ item.gpgkey }}'
+    enabled: yes
+    state: '{{ item.state }}'
+  loop: '{{ linux_repos }}'
+  register: result_linux_repos
+  when:
+    - item.enabled
+    - ansible_facts['os_family']|lower == "redhat"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure all packages are installed and updated"
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: '{{ packages }}'
+...

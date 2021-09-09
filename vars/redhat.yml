@@ -1,0 +1,80 @@
+---
+# This file has the custom configurations for:
+# redhat/centos/fedora
+
+ansible_python_interpreter: /usr/bin/python3
+
+packages:
+  # Packages for ComplianceAsCode content
+  - ansible-lint
+  - cmake
+  - dbus-devel
+  - fedpkg
+  - GConf2-devel
+  - git
+  - glibc
+  - initscripts
+  - jq
+  - make
+  - ninja-build
+  - openscap-scanner
+  - openscap-utils
+  - oval-graph
+  - python3-jinja2
+  - python3-pytest
+  - python3-pyyaml
+  - scap-workbench
+  - scap-security-guide
+  - ShellCheck
+  - yamllint
+
+  # Packages for OpenSCAP project
+  - autoconf        # OpenSCAP
+  - automake        # OpenSCAP
+  - bzip2-devel     # OpenSCAP
+  - libacl-devel    # OpenSCAP
+  - libblkid-devel  # OpenSCAP
+  - libcap-devel    # OpenSCAP
+  - libcurl-devel   # OpenSCAP
+  - libgcrypt-devel # OpenSCAP
+  - libselinux-devel  # OpenSCAP
+  - libtool         # OpenSCAP
+  - libxml2-devel   # OpenSCAP
+  - libxslt-devel   # OpenSCAP
+  - openldap-devel  # OpenSCAP
+  - pcre-devel      # OpenSCAP
+  - perl-devel      # OpenSCAP
+  - perl-XML-Parser # OpenSCAP
+  - perl-XML-XPath  # OpenSCAP
+  - python-devel    # OpenSCAP
+  - rpm-devel       # OpenSCAP
+  - swig            # OpenSCAP
+
+  # Packages used to create test VMs
+  - ansible
+  - edk2-ovmf
+  - expect
+  - libvirt
+  - libvirt-client
+  - libvirt-daemon
+  - openssh-clients
+  - podman
+  - python3-libvirt
+  - vagrant
+  - virt-install
+  - virt-manager
+  - virt-viewer
+
+  # Optional packages for better work or collaboration
+  - curl
+  - hexchat
+  - gnupg
+  - ltrace
+  #- lua
+  - procps-ng
+  - strace
+  - vim
+  - weechat
+  - wget
+  - which
+...

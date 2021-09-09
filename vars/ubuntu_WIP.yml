@@ -1,0 +1,18 @@
+---
+# This file has the custom configurations for:
+# ubuntu
+
+ansible_python_interpreter: /usr/bin/python3
+
+#https://github.com/ComplianceAsCode/content/blob/master/docs/manual/developer/02_building_complianceascode.md
+packages:
+  - cmake
+  - make
+  - expat
+  - libopenscap8
+  - libxml2-utils
+  - ninja-build
+  - python3-jinja2
+  - python3-yaml
+  - xsltproc
+...

@@ -1,0 +1,8 @@
+---
+# This file has the custom variables for:
+# populate_env.yml
+
+general_instructions_files:
+  - "STARTGUIDE.md"
+  - "COMMON_COMMANDS.md"
+...

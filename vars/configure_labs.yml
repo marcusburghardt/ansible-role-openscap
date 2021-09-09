@@ -1,0 +1,8 @@
+---
+# This file has the custom variables for:
+# configure_labs.yml
+
+vms_instructions_files:
+  - "VMs/INSTRUCTIONS_VMS.md"
+  - "VMs/INSTRUCTIONS_LABS.md"
+...

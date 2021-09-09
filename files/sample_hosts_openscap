@@ -1,0 +1,29 @@
+[linux:children]
+install_packages
+configure_git
+configure_env
+populate_env
+configure_labs
+configure_vscode
+install_python_modules
+
+[install_packages]
+localhost ansible_connection=local
+
+[configure_git]
+localhost ansible_connection=local
+
+[configure_env]
+localhost ansible_connection=local
+
+[populate_env]
+localhost ansible_connection=local
+
+[configure_labs]
+localhost ansible_connection=local
+
+[configure_vscode]
+localhost ansible_connection=local
+
+[install_python_modules]
+localhost ansible_connection=local

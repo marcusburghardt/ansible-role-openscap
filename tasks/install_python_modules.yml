@@ -1,0 +1,9 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure all Python modules via PIP"
+  become: yes
+  pip:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: '{{ pip_modules }}'
+  when: item.enabled
+...

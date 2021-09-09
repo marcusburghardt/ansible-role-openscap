@@ -1,0 +1,77 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure the main Git repositories are updated"
+  git:
+    repo: '{{ item.repo }}'
+    dest: '{{ upstream_dir }}/{{ item.dest }}'
+    clone: yes
+    update: yes
+  loop: '{{ git_repos }}'
+  register: result_git_main
+  when:
+    - item.enabled
+    - item.type == "main"
+    - result_upstream_dir is success
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the forked Git repositories are updated"
+  git:
+    repo: '{{ item.repo }}'
+    dest: '{{ forks_dir }}/{{ item.dest }}'
+    clone: yes
+    update: yes
+  loop: '{{ git_repos }}'
+  register: result_git_fork
+  ignore_errors: yes
+  when:
+    - item.enabled
+    - item.type == "fork"
+    - result_forks_dir is success
+
+- name: "{{ role_name }} | {{ task.name }} | Check if the desired remote reference is present"
+  lineinfile:
+    name: '{{ forks_dir }}/{{ item.dest }}/.git/config'
+    line: '[remote "{{ item.remote_name }}"]'
+    state: absent
+  loop: '{{ git_repos }}'
+  register: result_git_remote_check
+  check_mode: yes
+  changed_when: false
+  when:
+    - item.enabled
+    - item.type == "fork"
+    - result_git_fork is success
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the forked Git repositories have the NEW remote reference"
+  command:
+    chdir: '{{ forks_dir }}/{{ item.item.dest }}'
+    cmd: 'git remote add {{ item.item.remote_name }} {{ item.item.remote }}'
+  loop: '{{ result_git_remote_check.results }}'
+  register: result_git_remote_add
+  when:
+    - item is not skipped
+    - item.found == 0
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the forked Git repositories have the desired remote reference"
+  ini_file:
+    path: '{{ forks_dir }}/{{ item.dest }}/.git/config'
+    section: '[remote "{{ item.remote_name }}"]'
+    option: url
+    value: '{{ item.remote }}'
+  loop: '{{ git_repos }}'
+  register: result_git_remote_update
+  when:
+    - item.enabled
+    - item.type == "fork"
+    - result_git_remote_add is skipped
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the main instructions files"
+  copy:
+    dest: '{{ base_dir }}'
+    mode: '0664'
+    src: "{{ role_path }}/files/{{ item }}"
+    force: yes
+    backup: yes
+  loop: '{{ general_instructions_files }}'
+  register: result_general_instructions_files
+  when:
+    - result_base_dir is success
+...

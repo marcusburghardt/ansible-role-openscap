@@ -1,0 +1,90 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure the base working directory"
+  file:
+    path: '{{ base_dir }}'
+    state: directory
+    mode: '0755'
+  register: result_base_dir
+
+- name: "{{ role_name }} | {{ task.name }} | Check if you have active repositories of type main"
+  debug:
+    msg: "It is necessary to ensure the {{ upstream_dir }} directory"
+  register: active_upstream_repos
+  when: "(git_repos 
+    | selectattr('enabled', 'search', 'True')
+    | selectattr('type', 'search', 'main')
+    | list )"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the {{ upstream_dir }} directory"
+  file:
+    path: '{{ base_dir }}'
+    state: directory
+    mode: '0755'
+  register: result_upstream_dir
+  when:
+    - result_base_dir is success
+    - active_upstream_repos is not skipped
+
+- name: "{{ role_name }} | {{ task.name }} | Check if you have active repositories of type fork"
+  debug:
+    msg: "It is necessary to ensure the {{ forks_dir }} directory"
+  register: active_fork_repos
+  when: "(git_repos 
+    | selectattr('enabled', 'search', 'True')
+    | selectattr('type', 'search', 'fork')
+    | list )"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the {{ forks_dir }} directory"
+  file:
+    path: '{{ forks_dir }}'
+    state: directory
+    mode: '0755'
+  register: result_forks_dir
+  when:
+    - result_base_dir is success
+    - active_fork_repos is not skipped
+
+- name: "{{ role_name }} | {{ task.name }} | Check the existence of PATH environment variable"
+  replace:
+    dest: '{{ user_env_file }}'
+    regexp: '^export PATH='
+    replace: 'export PATH=""'
+  check_mode: yes
+  changed_when: false
+  register: result_path_env_check
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the existence of PATH environment variable"
+  lineinfile:
+    dest: '{{ user_env_file }}'
+    state: present
+    line: 'export PATH="$PATH"'
+  register: result_path_env_ensure
+  when:
+    - result_path_env_check is not changed
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure PATH environment variable is updated"
+  lineinfile:
+    dest: '{{ user_env_file }}'
+    state: present
+    backrefs: yes
+    backup: yes
+    regexp: 'export PATH=(["]*)((?!.*?{{ item.path }}).*?)(["]*)$'
+    line: 'export PATH=\1\2:{{ item.path }}\3'
+  loop: '{{ path_env }}'
+  register: result_path_env_set
+  when:
+    - item.enabled
+    - result_path_env_ensure is success or result_path_env_ensure is skipped
+
+- name: "{{ role_name }} | {{ task.name }} | Update the PS1 environment variable to show git branches"
+  blockinfile:
+    path: '{{ user_env_file }}'
+    # Default on Fedora is "[\u@\h \W]\$", for reference.
+    block: |
+      parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+      }
+      export PS1="[\u@\h \[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\]]$ "
+  when:
+    - ps1_update
+...

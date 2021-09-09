@@ -1,0 +1,34 @@
+---
+- hosts: linux
+  vars:
+    - available_tasks:
+      - { enabled: True, name: 'install_packages' }
+      - { enabled: True, name: 'configure_git' }
+      - { enabled: True, name: 'configure_env' }
+      - { enabled: True, name: 'populate_env' }
+      - { enabled: True, name: 'configure_vscode' }
+      - { enabled: True, name: 'configure_labs' }
+      - { enabled: True, name: 'install_python_modules' }
+
+    - git_username: 'My Name Here'
+    - git_email: 'myemail@example.com'
+
+    - ps1_update: True
+
+    - git_repos:
+      - { enabled: True, type: 'main', name: 'ComplianceAsCode->content',
+          repo: 'https://github.com/ComplianceAsCode/content.git',
+          dest: 'ComplianceAsCode/content' }
+
+      - { enabled: True, type: 'main', name: 'OpenSCAP->openscap',
+          repo: 'https://github.com/OpenSCAP/openscap.git',
+          dest: 'OpenSCAP/openscap' }
+
+      - { enabled: False, type: 'fork', name: 'ComplianceAsCode(fork)->content',
+          repo: 'https://github.com/myid/content.git',
+          dest: 'ComplianceAsCode/content',
+          remote: 'https://github.com/ComplianceAsCode/content.git',
+          remote_name: 'upstream' }
+
+  roles:
+    - marcusburghardt.ansible_role_openscap

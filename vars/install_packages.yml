@@ -1,0 +1,12 @@
+---
+# This file has the custom configurations for:
+# install_packages
+
+# If you want to install more repositories, here is the place.
+linux_repos:
+  - { enabled: False,  state: 'present', name: 'short-name',
+      description: 'Short Description',
+      repo: 'https://<repository url>', 
+      gpgcheck: '1', 
+      gpgkey: 'https://<gpgkey url>' }
+...
