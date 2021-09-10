@@ -33,6 +33,7 @@ vscode_extensions:
   - { enabled: True,  installed: True,  name: 'ms-vscode.cmake-tools' }
   - { enabled: True,  installed: True,  name: 'ms-vscode.cpptools' }
   - { enabled: True,  installed: True,  name: 'xaver.clang-format' }
+  - { enabled: True,  installed: True,  name: 'shd101wyy.markdown-preview-enhanced' }
   # Extensions for better visualization
   - { enabled: True,  installed: True,  name: 'coenraads.bracket-pair-colorizer-2' }
   - { enabled: True,  installed: True,  name: 'eamodio.gitlens' }

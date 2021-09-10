@@ -38,19 +38,7 @@
     src: "{{ role_path }}/files/VMs"
     force: yes
     backup: yes
-  register: result_vagrant_file
-  when:
-    - result_labs_dir is success
-
-- name: "{{ role_name }} | {{ task.name }} | Ensure the VMs instructions files"
-  copy:
-    dest: '{{ labs_dir }}'
-    mode: '0664'
-    src: "{{ role_path }}/files/{{ item }}"
-    force: yes
-    backup: yes
-  loop: '{{ vms_instructions_files }}'
-  register: result_vms_instructions_files
+  register: result_vms_content
   when:
     - result_labs_dir is success
 
@@ -60,7 +48,6 @@
       - "Please, read the information and follow the instructions in the {{ item }} file."
   loop: '{{ vms_instructions_files }}'
   when:
-    - result_vagrant_file is success
-    - result_vms_instructions_files is success
+    - result_vms_content is success
 
 ...

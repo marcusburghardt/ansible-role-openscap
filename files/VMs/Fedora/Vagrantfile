@@ -13,7 +13,8 @@ Vagrant.configure("2") do |config|
   # This script will be executed for all VMs for general customization.
   # If you want to customize something in your VM during its provisioning, here
   # is the place. You can write shell script language between "-SCRIPT" and "SCRIPT".
-  # This will be executed inside the VM, post-installation.  ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
+  # This will be executed inside the VM, post-installation.
+  ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
   $bootstrap = <<-SCRIPT
   mkdir -p touch /root/.ssh
   echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
