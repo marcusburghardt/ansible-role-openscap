@@ -76,7 +76,7 @@ Example Playbook
 ----------------
 
 This playbook will prepare everything with the essential variables.
-You can find a sample in "files", named "sample_ansible_openscap.yml".
+You can find a sample in "files/Ansible_Samples", named "ansible_openscap.yml".
 
 For this example, lets call this playbook file as "ansible_openscap.yml":
 
@@ -95,14 +95,14 @@ For this example, lets call this playbook file as "ansible_openscap.yml":
     - marcusburghardt.ansible_role_openscap
 
 Considering the inventory file is in the same folder and is called "hosts_openscap".
-OBS.: You can also find a sample in "files", named "sample_hosts_openscap".
+OBS.: You can also find a sample in "files/Ansible_Samples", named "hosts_openscap".
 
 Now, run this command to see the magic happen:  
 $ ansible-playbook -K -i hosts_vscode ansible_vscode.yml  
 
 Maybe you would like to set some ansible configurations for this environment.  
 For instance, define a local folder to hold downloads roles.  
-You can find an example of ansible.cfg file in "files" folder, named "sample_ansible.cfg".s
+You can find an example of ansible.cfg file in "files/Ansible_Samples" folder, named "ansible.cfg".
 
 License
 -------
