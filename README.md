@@ -27,7 +27,7 @@ You can change directly there or, more elegantly, overridden them in your playbo
     - Copy the Vagrantfiles to ~/OpenSCAP/Labs/VMs
     - Copy instructions files for Labs and Tests related to VMs in Labs/VMs.
     - TODO: Copy instructions files for Lats and Tests related to Containers in Labs/Containers.
-- Configure VSCODE:
+- Configure VSCode:
     - OBS.: It is totally optional, but strongly recommended to use VSCode.
     - Add the official repositories.
     - Install and configure VSCode to already add ~/OpenSCAP in the Workspace.
@@ -94,7 +94,7 @@ For this example, lets call this playbook file as `ansible_openscap.yml`, with t
   roles:
     - marcusburghardt.ansible_role_openscap
 ```
-
+Note that this ansible role was created by a group of specific tasks (available_tasks). You can disable and enable the tasks combination according to your demands.
 Considering the inventory file `hosts_openscap` is in the same folder, with the following content:
 ```
 [linux:children]
@@ -111,7 +111,7 @@ install_python_modules
 > OBS.: You can also find a sample in `files/Ansible_Samples`, named `hosts_openscap`.
 
 Now, run this command to see the magic happen:
-> $ ansible-playbook -K -i hosts_vscode ansible_vscode.yml  
+> $ ansible-playbook -K -i hosts_vscode ansible_openscap.yml  
 
 Maybe you would like to set some ansible configurations for this environment.  
 For instance, define a local folder to hold downloads roles.  

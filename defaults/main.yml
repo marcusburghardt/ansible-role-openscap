@@ -8,13 +8,13 @@
 # permissions to install packages and change some system files (repos).
 # Then, you can call the ansible-playbook command with the -K option.
 available_tasks:
-  - { enabled: True,  name: 'install_packages' }  # Requires -K option
-  - { enabled: True,  name: 'configure_git' }
-  - { enabled: True,  name: 'configure_env' }
-  - { enabled: True,  name: 'populate_env' }
-  - { enabled: True,  name: 'configure_labs' }
-  - { enabled: True,  name: 'configure_vscode' }  # Requires -K option
-  - { enabled: True,  name: 'install_python_modules' }
+  - { enabled: True, name: 'install_packages' }         # Requires -K option
+  - { enabled: True, name: 'install_python_modules' }
+  - { enabled: True, name: 'configure_git' }
+  - { enabled: True, name: 'configure_env' }
+  - { enabled: True, name: 'configure_labs' }           # Depends on 'configure_env'
+  - { enabled: True, name: 'populate_env' }             # Depends on 'configure_env'
+  - { enabled: True, name: 'configure_vscode' }         # Requires -K option
   
 # Everything created by this role will be limited to this directory scope,
 # with exceptions to the users and OS specific settings.

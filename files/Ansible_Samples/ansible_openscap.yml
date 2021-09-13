@@ -3,12 +3,12 @@
   vars:
     - available_tasks:
       - { enabled: True, name: 'install_packages' }
+      - { enabled: True, name: 'install_python_modules' }
       - { enabled: True, name: 'configure_git' }
       - { enabled: True, name: 'configure_env' }
-      - { enabled: True, name: 'populate_env' }
+      - { enabled: True, name: 'configure_labs' }           # Depends on 'configure_env'
+      - { enabled: True, name: 'populate_env' }             # Depends on 'configure_env'
       - { enabled: True, name: 'configure_vscode' }
-      - { enabled: True, name: 'configure_labs' }
-      - { enabled: True, name: 'install_python_modules' }
 
     - git_username: 'My Name Here'
     - git_email: 'myemail@example.com'
