@@ -153,6 +153,7 @@ You can know more about the testing VMs in `~/OpenSCAP/Labs/VMs/INSTRUCTIONS_VMS
 
 And you can go deep on that later, if desired:
 - https://complianceascode.readthedocs.io/en/latest/tests/README.html
+- https://complianceascode.github.io/template/2021/03/25/tests_howto.html
 
 # OpenSCAP
 More information about how to contribute in the OpenSCAP scanner can be found here:

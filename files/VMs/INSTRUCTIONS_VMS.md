@@ -15,6 +15,7 @@ Since we, as developers, usually need these VMs for quick tests, as supportive r
 - More flexibility;
     - In a traditional VM it is necessary to care about **snapshots** after a fresh install. It is also necessary keep the VM there, even when not necessary. Otherwise, a new installation will be necessary.
     - Using `Vagrant`, it is possible to easily and quickly start a brand new VM on demand, without worry about dangerous tests on there, snapshots, etc. `Just destroy and create another as much as you want`.
+
 - Less maintenance;
     - `Vagrant` is a very popular solution for provisioning of quick labs, with a active community, good documentation and rich arsenal of features which can be easily enjoyed.
 
