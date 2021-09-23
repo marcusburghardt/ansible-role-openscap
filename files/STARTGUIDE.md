@@ -77,38 +77,52 @@ Once it is forked, include the forked repository in the `git_repos` list of your
 Observe the `remote` parameter here, which is pointing to the main project in Upstream. This will be very useful later.
 
 Run your playbook again and check the Forks folder:
->ansible-playbook -K ansible_openscap
->cd ~/OpenSCAP/Forks/ComplianceAsCode/content
+```bash
+ansible-playbook -K ansible_openscap
+cd ~/OpenSCAP/Forks/ComplianceAsCode/content
+```
 
-You are totally free to choose another `dest` if desired. :)
+You are totally free to choose another `dest` if desired. ;)
 
 ## Check the remotes
 Inside your forked repository, check the `remotes`:
->git remote -v
+```bash
+git remote -v
+```
 
 ## Update your fork
 It is always interesting to update your fork before start coding:
->git checkout master
->git pull upstream master
->git push
+```bash
+git checkout master
+git pull upstream master
+git push
+```
 
 ## Create a new branch
 It is strongly recommended to not work in the master branch. So, create a new one:
->git checkout -b my_new_branch
+```bash
+git checkout -b my_new_branch
+```
 
 Now you can start coding in your new branch.
 If you want to check your existing branches:
->git branch
+```bash
+git branch
+```
 
 ## Send a Pool Request
 Once your patch is ready, you have to submit it to the main project, where maintainers and other contributors can review, accept (`merge`) or aks adjusts.
 Use `git add` to include the desired changes in the staging area.
 Once it is done, commit it:
->git commit -m
->git log --graph
+```bash
+git commit -m
+git log --graph
+```
 
 Now you have to push this commit to Github:
->git push
+```bash
+git push
+```
 
 Once your commit is in Github, access your fork from the Github webpage and follow the instructions to create a Pool Request (PR).
 
@@ -120,20 +134,24 @@ It is really common, regardless the level of experience, that we have some impro
 So, if you need to update your patch, continue working in your branch and when finished it is necessary to update your PR.
 
 Usually, if it is a small change, just amend your last commit and that is it:
->git add ...
->git commit --amend
->git push --force
+```bash
+git add ...
+git commit --amend
+git push --force
+```
 
 This will automatically update your PR in the Upstream project.
 
 ## Rebase your branch
 Sometimes we are not able, for any reason, to update a PR very soon. On the other hand, the project is active and many merges may happen this meantime. If the merges are not conflicting with your patch, it is usually fine. However, it is a good practice to rebase your patch if some days have passed.
 
->git checkout master
->git pull upstream master
->git push
->git checkout my_new_branch
->git rebase master
+```bash
+git checkout master
+git pull upstream master
+git push
+git checkout my_new_branch
+git rebase master
+```
 
 Then follow the steps from **Update a patch**.
 
@@ -142,12 +160,14 @@ If you changed an existing rule of even created a new one, it sounds reasonable 
 
 Here is an example of how to provisioning a Fedora VM and testing the rule `audit_rules_login_events_lastlog` on it.
 
->cd ~/OpenSCAP/Labs/VMs/Fedora
->vagrant up
->cd ~/OpenSCAP/Forks/ComplianceAsCode/content
->./build_product --datastream-only fedora
->
->./tests/test_suite.py rule --libvirt qemu:///session cac_fedora34 --datastream ./build/ssg-fedora-ds.xml audit_rules_login_events_lastlog
+```bash
+cd ~/OpenSCAP/Labs/VMs/Fedora
+vagrant up
+cd ~/OpenSCAP/Forks/ComplianceAsCode/content
+./build_product --datastream-only fedora
+
+./tests/test_suite.py rule --libvirt qemu:///session cac_fedora34 --datastream ./build/ssg-fedora-ds.xml audit_rules_login_events_lastlog
+```
 
 You can know more about the testing VMs in `~/OpenSCAP/Labs/VMs/INSTRUCTIONS_VMS.md`.
 

@@ -9,6 +9,8 @@ You can change directly there or, more elegantly, overridden them in your playbo
 **This role will**:
 - Install all the necessary packages:
     - Packages required for development, tests and extra tools.
+- Install Python Modules:
+    - Install extra python modules necessary for CMakeTests or Json.
 - Configure git:
     - Define the main editor
     - Ensure the name and email which will appear on commits
@@ -18,23 +20,21 @@ You can change directly there or, more elegantly, overridden them in your playbo
     - Update the PATH variable, if necessary.
     - Create the Upstream sub-folder, if any upstream repository is enabled.
     - Create the Forks sub-folder, if any forked repository is enabled.
+- Configure Labs:
+    - Copy the Vagrantfiles to ~/OpenSCAP/Labs/VMs
+    - Copy instructions files for Labs and Tests related to VMs in Labs/VMs.
+    - TODO: Copy instructions files for Labs and Tests related to Containers in Labs/Containers.
 - Populate the environment:
     - Clone and update the "main" (Upstream) repositories, if any is enabled.
     - Clone the "fork" repositories, if any is present and enabled.
     - Clone and "lab" repositories, if any is present and enabled.
     - Copy the general instructions files to ~/OpenSCAP
-- Configure Labs:
-    - Copy the Vagrantfiles to ~/OpenSCAP/Labs/VMs
-    - Copy instructions files for Labs and Tests related to VMs in Labs/VMs.
-    - TODO: Copy instructions files for Lats and Tests related to Containers in Labs/Containers.
 - Configure VSCode:
     - OBS.: It is totally optional, but strongly recommended to use VSCode.
     - Add the official repositories.
     - Install and configure VSCode to already add ~/OpenSCAP in the Workspace.
     - Install the main useful extensions.
     - Make sure VSCode is updated.
-- Install Python Modules:
-    - Install extra python modules necessary for CMakeTests or Json.
 
 TODO
 ----
@@ -42,8 +42,9 @@ TODO
 
 To install this role
 ---------------------
-$ ansible-galaxy role install marcusburghardt.ansible_role_openscap
-
+```bash
+ansible-galaxy role install marcusburghardt.ansible_role_openscap
+```
 
 Requirements
 ------------
@@ -108,10 +109,12 @@ install_python_modules
 
 ...lines omitted for better reading...
 ``` 
-> OBS.: You can also find a sample in `files/Ansible_Samples`, named `hosts_openscap`.
+OBS.: You can also find a sample in `files/Ansible_Samples`, named `hosts_openscap`.
 
 Now, run this command to see the magic happen:
-> $ ansible-playbook -K -i hosts_vscode ansible_openscap.yml  
+```bash
+ansible-playbook -K ansible_openscap.yml 
+```
 
 Maybe you would like to set some ansible configurations for this environment.  
 For instance, define a local folder to hold downloads roles.  
