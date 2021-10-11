@@ -10,16 +10,16 @@ In very short sentences, this is a macro overview to understand the OpenSCAP pro
 
 1 - Governments, Authorities, Organizations, Companies and any other stakeholder define
 Security Standards based on best practices of hardening. However, these definitions are
-usually high-level. It means that many times is clear what is desired but is not always
-clear how to achieve some desired state.
+usually high-level. It means that many times it is clear what is desired but is not
+always clear how to achieve a desired state.
 
 2 - So, we have ComplianceAsCode project, more specifically in the `content` repository.
-What we do here is to create technical rules to ensure systems to properly achieve a
-desired state to increase the respective system security.
+What we do here is to create technical rules to ensure the systems properly achieve a
+desired state which finally increase the respective system security.
 
-3 - Once we have these technical rules defined, we need a Scanner which will interpret
-these rules and make sure the analysed system is is compliance with the desired state.
-Here the OpenSCAP Scanner tool enter in the game.
+3 - Once we have these technical rules defined, we need a Scanner tool which will
+interpret these rules and make sure the analysed system is is compliance with the desired
+state. Here the OpenSCAP Scanner tool enter in the game.
 
 4 - So, basically the ComplianceAsCode (`content`) generates rules to translated standards
 requirements in technical rules which are lately consumed by a Scanner (`OpenSCAP`). That
@@ -175,6 +175,15 @@ And you can go deep on that later, if desired:
 - https://complianceascode.readthedocs.io/en/latest/tests/README.html
 - https://complianceascode.github.io/template/2021/03/25/tests_howto.html
 
+# Reviewing a PR locally
+```bash
+git fetch upstream pull/ID/head:REVIEWBRANCH
+git checkout REVIEWBRANCH
+```
+At this point you can do all tests you consider necessary. Once they are finished, remove the branch.
+```bash
+git branch -d REVIEWBRANCH
+```
 # OpenSCAP
 More information about how to contribute in the OpenSCAP scanner can be found here:
 - https://github.com/OpenSCAP/openscap/blob/maint-1.3/docs/contribute/contribute.adoc
