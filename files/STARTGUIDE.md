@@ -105,7 +105,7 @@ If you want to check your existing branches:
 git branch
 ```
 
-## Send a Pool Request
+## Send a Pull Request
 Once your patch is ready, you have to submit it to the main project, where maintainers and other contributors can review, accept (`merge`) or aks adjusts.
 Use `git add` to include the desired changes in the staging area.
 Once it is done, commit it:
@@ -119,7 +119,7 @@ Now you have to push this commit to Github:
 git push
 ```
 
-Once your commit is in Github, access your fork from the Github webpage and follow the instructions to create a Pool Request (PR).
+Once your commit is in Github, access your fork from the Github webpage and follow the instructions to create a Pull Request (PR).
 
 Now you can follow the project and wait for feedbacks.
 
