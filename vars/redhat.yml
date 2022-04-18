@@ -21,6 +21,8 @@ packages:
   - openscap-utils
   - oval-graph
   - python3-jinja2
+  - python3-openpyxl
+  - python3-pandas
   - python3-pytest
   - python3-pyyaml
   - scap-workbench
