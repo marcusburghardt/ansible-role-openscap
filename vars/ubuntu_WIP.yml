@@ -13,6 +13,8 @@ packages:
   - libxml2-utils
   - ninja-build
   - python3-jinja2
+  - python3-openpyxl
+  - python3-pandas
   - python3-yaml
   - xsltproc
 ...
