@@ -92,9 +92,13 @@ git checkout master
 git pull upstream master
 git push
 ```
+The above commands mean:
+* checkout in your local master branch.
+* pull the updates from the master branch in the remote (upstream) repository into your local branch.
+* update your remote fork.
 
 ## Create a new branch
-It is strongly recommended to not work in the master branch. So, create a new one:
+It is strongly recommended to not work in the master branch. So, create a new one and keep your local master branch clean:
 ```bash
 git checkout -b my_new_branch
 ```
@@ -104,13 +108,35 @@ If you want to check your existing branches:
 ```bash
 git branch
 ```
+Use the following command to switch among your local branches:
+```bash
+git checkout branch_name
+```
 
 ## Send a Pull Request
-Once your patch is ready, you have to submit it to the main project, where maintainers and other contributors can review, accept (`merge`) or aks adjusts.
-Use `git add` to include the desired changes in the staging area.
-Once it is done, commit it:
+Once your patch is ready, you have to submit it to the main project, where maintainers and other contributors can review, accept (`merge`) or ask changes.
+
+A good hint is to check your changes before committing them. These following commands are useful for that:
+
 ```bash
-git commit -m
+git status
+git diff
+```
+
+Use `git add` to include the desired files in the staging area.
+```bash
+git add file_which_i_just_modified_and_want_to_commit
+```
+You can include multiple files or folders in the staging area. The `git status` command shows what is already there. Keep in mind that sometimes it is valid to organize the changes in different commits if it makes sense.
+
+Once your desired content is already in the stage area, it is time to commit:
+```bash
+git commit
+```
+Write a meaningful commit text to conclude the commit command. `git log` can show you the history of commits:
+
+```bash
+git log
 git log --graph
 ```
 
@@ -124,16 +150,17 @@ Once your commit is in Github, access your fork from the Github webpage and foll
 Now you can follow the project and wait for feedbacks.
 
 ## Update a patch
-It is really common, regardless the level of experience, that we have some improvements to do in the "first version" of our patch. Because that the review process in OpenSource projects is so important. Not to judge codes, but to continually improve together.
+It is really common, regardless the level of experience, that we have some improvements to do in the "first version" of our patches. Because of that the review process in OpenSource projects is so important. Not to judge codes, but to continually improve together.
 
-So, if you need to update your patch, continue working in your branch and when finished it is necessary to update your PR.
+So, if you need to update your patch, continue working in your branch and to update your PR.
 
-Usually, if it is a small change, just amend your last commit and that is it:
+Usually, if it is a small change, like a typo, just amend your last commit and that is it:
 ```bash
 git add ...
 git commit --amend
 git push --force
 ```
+In most of the cases, the changes are significant and `--amend` is not recommended. In these cases, proceed with a new commit, as previously described in **Send a Pull Request**
 
 This will automatically update your PR in the Upstream project.
 
