@@ -7,6 +7,7 @@ ansible_python_interpreter: /usr/bin/python3
 packages:
   # Packages for ComplianceAsCode content
   - ansible-lint
+  - bats
   - cmake
   - gcc-c++
   - dbus-devel
@@ -22,8 +23,12 @@ packages:
   - openscap-utils
   - oval-graph
   - python3-jinja2
+  - python3-openpyxl
+  - python3-pandas
+  - python3-pygithub
   - python3-pytest
   - python3-pyyaml
+  - python3-sphinx
   - scap-workbench
   - scap-security-guide
   - ShellCheck
