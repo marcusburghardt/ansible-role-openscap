@@ -34,8 +34,9 @@ vscode_extensions:
   - { enabled: True,  installed: True,  name: 'ms-vscode.cpptools' }
   - { enabled: True,  installed: True,  name: 'redhat.ansible' }
   - { enabled: True,  installed: True,  name: 'redhat.vscode-yaml' }
-  - { enabled: True,  installed: True,  name: 'xaver.clang-format' }
   - { enabled: True,  installed: True,  name: 'shd101wyy.markdown-preview-enhanced' }
+  - { enabled: True,  installed: True,  name: 'timonwong.shellcheck' }
+  - { enabled: True,  installed: True,  name: 'xaver.clang-format' }
   # Extensions for better visualization
   - { enabled: True,  installed: True,  name: 'coenraads.bracket-pair-colorizer-2' }
   - { enabled: True,  installed: True,  name: 'eamodio.gitlens' }
