@@ -9,6 +9,7 @@ packages:
   - ansible-lint
   - bats
   - cmake
+  - cmake-gui
   - gcc-c++
   - dbus-devel
   - fedpkg
