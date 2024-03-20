@@ -1,6 +1,5 @@
 ---
-# This file has the custom variables for:
-# populate_env.yml
+# This file has the custom variables for populate_env task.
 
 general_instructions_files:
   - "STARTGUIDE.md"
