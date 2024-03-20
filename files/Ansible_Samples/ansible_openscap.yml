@@ -2,29 +2,29 @@
 - hosts: linux
   vars:
     - available_tasks:
-      - { enabled: True, name: 'install_packages' }
-      - { enabled: True, name: 'install_python_modules' }
-      - { enabled: True, name: 'configure_git' }
-      - { enabled: True, name: 'configure_env' }
-      - { enabled: True, name: 'configure_labs' }           # Depends on 'configure_env'
-      - { enabled: True, name: 'populate_env' }             # Depends on 'configure_env'
-      - { enabled: True, name: 'configure_vscode' }
+      - { enabled: true, name: 'install_packages' }
+      - { enabled: true, name: 'install_python_modules' }
+      - { enabled: true, name: 'configure_git' }
+      - { enabled: true, name: 'configure_env' }
+      - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
+      - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
+      - { enabled: true, name: 'configure_vscode' }
 
     - git_username: 'My Name Here'
     - git_email: 'myemail@example.com'
 
-    - ps1_update: True
+    - ps1_update: true
 
     - git_repos:
-      - { enabled: True, type: 'main', name: 'ComplianceAsCode->content',
+      - { enabled: true, type: 'main', name: 'ComplianceAsCode->content',
           repo: 'https://github.com/ComplianceAsCode/content.git',
           dest: 'ComplianceAsCode/content' }
 
-      - { enabled: True, type: 'main', name: 'OpenSCAP->openscap',
+      - { enabled: true, type: 'main', name: 'OpenSCAP->openscap',
           repo: 'https://github.com/OpenSCAP/openscap.git',
           dest: 'OpenSCAP/openscap' }
 
-      - { enabled: False, type: 'fork', name: 'ComplianceAsCode(fork)->content',
+      - { enabled: false, type: 'fork', name: 'ComplianceAsCode(fork)->content',
           repo: 'https://github.com/myid/content.git',
           dest: 'ComplianceAsCode/content',
           remote: 'https://github.com/ComplianceAsCode/content.git',

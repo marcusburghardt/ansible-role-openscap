@@ -1,34 +1,35 @@
 # Context
-Working with OpenSource and Security we are immersed in an intensive learning environment.
+Working with Open-source and Security we are immersed in an intensive learning environment.
 But if you want to already start doing some code and contributing, this guide is for you. ;)
 
-I would personally advice to not be worried about all the concepts, syntaxes, standards and
-structure by now. Naturally you will get aware of this along the time, when the challenges are appearing as learning opportunities.
+I would personally advice to not be worried about all the concepts, syntaxes, standards and structure by now.
+Naturally you will get aware of this along the time, when the challenges are appearing as learning opportunities.
 
-In very short sentences, this is a macro overview to understand the OpenSCAP projects:
+In very short sentences, this is a macro overview to understand the ComplianceAsCode projects:
 
 1 - Governments, Authorities, Organizations, Companies and any other stakeholder define Security Standards based on best practices of hardening.
-However, these definitions are usually high-level. It means that many times it is clear what is desired but is not always clear how to achieve a desired state.
+These definitions are usually high-level.
+It means that many times it is clear what is desired but is not always clear how to achieve a desired state.
 
 2 - So, we have ComplianceAsCode project, more specifically in the `content` repository.
 What we do here is to create technical rules to ensure the systems properly achieve a desired state which finally increase the respective system security.
 
-3 - Once we have these technical rules defined, we need a Scanner tool which will interpret these rules and make sure the analysed system is in compliance with the desired state. 
+3 - Once we have these technical rules defined, we need a Scanner tool which will interpret these rules and make sure the analyzed system is in compliance with the desired state. 
 Here the OpenSCAP Scanner tool enter in the game.
 
-4 - So, basically the ComplianceAsCode (`content`) generates rules to translated standards requirements in technical rules which are lately consumed by a Scanner (`OpenSCAP`). That said, OpenSCAP and Content are directly related to each other. This is why this Ansible role is called `openscap`, which is not a reference to OpenSCAP scanner itself, but all the projects under the OpenSCAP umbrella, like:
+4 - So, basically the ComplianceAsCode (`content`), based on standards requirements, generates technical rules which are lately consumed by a Scanner (`OpenSCAP`). That said, OpenSCAP and Content are directly related to each other. This is why this Ansible role is called `openscap`, which is not a reference to OpenSCAP scanner itself, but all the projects under the OpenSCAP umbrella, like:
 - Content - https://github.com/ComplianceAsCode/content/
 - OpenSCAP - https://github.com/OpenSCAP/openscap
 - scap-workbench - https://github.com/OpenSCAP/scap-workbench
 - oscap-anaconda-addon - https://github.com/OpenSCAP/oscap-anaconda-addon
 - and more...
 
-5 - Once we have a content and a scanner, we can detect compliance gaps. But this is actually (intentionally) only informative. In some cases, stakeholders want to also fix the detected gaps in a reliable, effective, efficient and elegant way. Due that the `ComplianceAsCode` also deliver remediation for many rules mostly in Bash but also in Ansible.
+5 - Once we have a content and a scanner, we can detect compliance gaps. But this is actually (intentionally) only informative. In some cases, stakeholders want to also fix the detected gaps in a reliable, effective, efficient and elegant way. Due that the `ComplianceAsCode` also deliver remediation for many rules in Bash and Ansible.
 
 We can summarize a little more these 5 points saying that:
 - OpenSCAP projects can, in an easier way, detect and close compliance GAPs for many security standards.
 
-So, as far the initial release of this role is more focused on ComplianceAsCode content, it should be totally compatible to work with other OpenSCAP projects.
+So, as far the initial release of this role is more focused on ComplianceAsCode/content, it should be totally compatible to work with other OpenSCAP projects.
 
 # Main Concepts
 ## Rules and Profiles
@@ -39,7 +40,7 @@ The rule is actually the technical instruction for the scanner (OpenSCAP).
 For efficiency, we group these rules in **Profiles** which finally represent a group of rules applicable for a specific product (RHEL, Ubuntu, OpenShift, etc) to achieve the compliance of a specific standard. Here are some examples of profiles:
 - pci-dss.profile
 - stig.profile
-- stig.profile
+- cis_rhel9.profile
 
 You can better explore this practicing the suggested LABs in:
 `~/OpenSCAP/Labs/VMs/INSTRUCTIONS_LABS.md`
