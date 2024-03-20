@@ -1,12 +1,9 @@
 ---
-# This file has the custom configurations for:
-# configure_git
+# This file has the custom configurations for configure_git task.
 
-# Variables related to "configure_git" module
 user_git_file: "{{ ansible_facts['user_dir'] }}/.gitconfig"
 
 # These are settings for the "user" section inside the git config file.
-# This can be easily extended to other sections too, if necessary.
 git_user_config:
   - { enabled: True,  state: 'present',
       section: 'user', parameter: 'name', value: '{{ git_username }}' }

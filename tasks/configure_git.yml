@@ -1,11 +1,11 @@
 ---
-- name: "{{ role_name }} | {{ task.name }} | Ensure Git configurations"
-  ini_file:
-    path: '{{ user_git_file }}'
-    section: '{{ item.section }}'
-    option: '{{ item.parameter }}'
-    value: '{{ item.value }}'
-  loop: '{{ git_user_config }}'
+- name: "{{ role_name }} | {{ task.name }} | Ensure local Git settings"
+  community.general.ini_file:
+    path: "{{ user_git_file }}"
+    section: "{{ item.section }}"
+    option: "{{ item.parameter }}"
+    value: "{{ item.value }}"
+  loop: "{{ git_user_config }}"
   when:
     - item.enabled
 ...
