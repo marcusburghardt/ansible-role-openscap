@@ -35,7 +35,7 @@ git_autocrlf: 'input'
 # When working with many branches it is useful to see the current branch in the PS1
 # environment variable. If the below variable is enabled, the PS1 will get a nice and
 # simple update which can help the navigation between branches.
-ps1_update: False
+ps1_update: false
 
 # These repositories are usually what your need to work in the project.
 # For this environment, the role is using two "types" of repositories:
@@ -48,11 +48,11 @@ ps1_update: False
 #         don't need these labs, but they are good if you like hands-on approach.
 #         Instructions regarding the labs are provided in INSTRUCTIONS_LABS.md file.
 git_repos:
-  - { enabled: False, type: 'lab', name: 'RedHatDemos->SecurityDemos',
+  - { enabled: false, type: 'lab', name: 'RedHatDemos->SecurityDemos',
       repo: 'https://github.com/RedHatDemos/SecurityDemos.git',
       dest: 'RedHatDemos/SecurityDemos' }
 
-  - { enabled: False, type: 'fork', name: 'Project(fork)->Project',
+  - { enabled: false, type: 'fork', name: 'Project(fork)->Project',
       repo: 'https://github.com/mygithubid/project.git',
       dest: 'Project/repository',
       remote: 'https://github.com/Project/repository.git',

@@ -2,9 +2,9 @@
 # This file has the custom variables for configure_env task.
 
 path_env:
-  - { enabled: False,  name: 'just informative name',
+  - { enabled: false,  name: 'just informative name',
       path: '{{ upstream_dir }}/project-tools/bin' }
-  - { enabled: False,  name: 'Compiled OpenSCAP Binaries',
+  - { enabled: false,  name: 'Compiled OpenSCAP Binaries',
       path: '{{ forks_dir }}/OpenSCAP/openscap/build' }
 
 user_env_file: "{{ ansible_facts['user_dir'] }}/.bashrc"

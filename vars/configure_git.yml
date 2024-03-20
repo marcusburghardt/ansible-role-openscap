@@ -5,12 +5,12 @@ user_git_file: "{{ ansible_facts['user_dir'] }}/.gitconfig"
 
 # These are settings for the "user" section inside the git config file.
 git_user_config:
-  - { enabled: True,  state: 'present',
+  - { enabled: true,  state: 'present',
       section: 'user', parameter: 'name', value: '{{ git_username }}' }
-  - { enabled: True,  state: 'present',
+  - { enabled: true,  state: 'present',
       section: 'user', parameter: 'email', value: '{{ git_email }}' }
-  - { enabled: True,  state: 'present',
+  - { enabled: true,  state: 'present',
       section: 'core', parameter: 'editor', value: '{{ git_editor }}' }
-  - { enabled: True,  state: 'present',
+  - { enabled: true,  state: 'present',
       section: 'core', parameter: 'autocrlf', value: '{{ git_autocrlf }}' }
 ...

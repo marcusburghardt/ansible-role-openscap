@@ -16,14 +16,6 @@
     - ps1_update: true
 
     - git_repos:
-      - { enabled: true, type: 'main', name: 'ComplianceAsCode->content',
-          repo: 'https://github.com/ComplianceAsCode/content.git',
-          dest: 'ComplianceAsCode/content' }
-
-      - { enabled: true, type: 'main', name: 'OpenSCAP->openscap',
-          repo: 'https://github.com/OpenSCAP/openscap.git',
-          dest: 'OpenSCAP/openscap' }
-
       - { enabled: false, type: 'fork', name: 'ComplianceAsCode(fork)->content',
           repo: 'https://github.com/myid/content.git',
           dest: 'ComplianceAsCode/content',
