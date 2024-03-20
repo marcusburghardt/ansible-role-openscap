@@ -1,40 +1,40 @@
 ---
-- name: "{{ role_name }} | {{ task.name }} | Check if you have active repositories of type lab"
-  debug:
-    msg: "It is necessary to ensure the {{ forks_dir }} directory"
+- name: "{{ role_name }} | {{ task.name }} | Check for active repositories of type lab"
+  ansible.builtin.debug:
+    msg: "It is necessary to ensure the {{ labs_dir }} directory"
   register: active_lab_repos
   when: "(git_repos 
-    | selectattr('enabled', 'search', 'True')
+    | selectattr('enabled', 'search', 'true')
     | selectattr('type', 'search', 'lab')
     | list )"
 
-- name: "{{ role_name }} | {{ task.name }} | Ensure the {{ dir_labs }} directory"
-  file:
-    path: '{{ labs_dir }}'
+- name: "{{ role_name }} | {{ task.name }} | Ensure the {{ labs_dir }} directory"
+  ansible.builtin.file:
+    path: "{{ labs_dir }}"
     state: directory
-    mode: '0755'
+    mode: '0750'
   register: result_labs_dir
   when:
+    # result_base_dir is defined in configure_env
     - result_base_dir is success
     - active_lab_repos is not skipped
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure the labs repositories are updated"
-  git:
-    repo: '{{ item.repo }}'
-    dest: '{{ labs_dir }}/{{ item.dest }}'
-    clone: yes
-    update: yes
-  loop: '{{ git_repos }}'
-  register: result_git_labs
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ labs_dir }}/{{ item.dest }}"
+    clone: true
+    update: true
+  loop: "{{ git_repos }}"
   when:
     - item.enabled
     - item.type == "lab"
     - result_labs_dir is success
 
-- name: "{{ role_name }} | {{ task.name }} | Ensure the test VMs Vagrant files"
-  copy:
-    dest: '{{ labs_dir }}'
-    mode: '0664'
+- name: "{{ role_name }} | {{ task.name }} | Ensure Vagrant files for test VMs"
+  ansible.builtin.copy:
+    dest: "{{ labs_dir }}"
+    mode: '0640'
     src: "{{ role_path }}/files/VMs"
     force: yes
     backup: yes
@@ -42,12 +42,11 @@
   when:
     - result_labs_dir is success
 
-- name: "{{ role_name }} | {{ task.name }} | To work with VMs read the instructions files first"
-  debug:
+- name: "{{ role_name }} | {{ task.name }} | Read the instructions files for Labs"
+  ansible.builtin.debug:
     msg:
       - "Please, read the information and follow the instructions in the {{ item }} file."
-  loop: '{{ vms_instructions_files }}'
+  loop: "{{ vms_instructions_files }}"
   when:
     - result_vms_content is success
-
 ...

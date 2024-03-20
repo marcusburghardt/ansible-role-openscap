@@ -1,6 +1,5 @@
 ---
-# This file has the custom variables for:
-# configure_labs.yml
+# This file has the custom variables for configure_labs task.
 
 vms_instructions_files:
   - "VMs/INSTRUCTIONS_VMS.md"
