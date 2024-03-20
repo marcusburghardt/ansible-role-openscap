@@ -1,8 +1,6 @@
 ---
-# This file has the custom configurations for:
-# install_python_modules
+# This file has the custom configurations for install_python_modules task.
 
-# If you want to install more repositories, here is the place.
 pip_modules:
   - { enabled: True,  state: 'present', name: 'json2html' }
   - { enabled: True,  state: 'present', name: 'pytest-cov' }
