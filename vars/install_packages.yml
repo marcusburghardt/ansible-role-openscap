@@ -1,8 +1,7 @@
 ---
-# This file has the custom configurations for:
-# install_packages
+# This file has the custom configurations for install_packages task.
+# Use this entry as reference but prefer to define your desired repositories in your own Playbook.
 
-# If you want to install more repositories, here is the place.
 linux_repos:
   - { enabled: False,  state: 'present', name: 'short-name',
       description: 'Short Description',
