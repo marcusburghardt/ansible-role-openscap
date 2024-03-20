@@ -1,8 +1,8 @@
 galaxy_info:
   author: Marcus Burghardt
-  description: Role for quickly prepare a Development Environment for OpenSCAP projects.
+  description: Role for quickly prepare a Development Environment for ComplianceAsCode projects.
   license: MPL
-  min_ansible_version: 2.9
+  min_ansible_version: 2.11
   platforms:
     - name: EL
       versions:
