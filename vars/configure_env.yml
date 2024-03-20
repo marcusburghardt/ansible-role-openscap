@@ -1,15 +1,12 @@
 ---
-# This file has the custom variables for:
-# configure_env.yml
+# This file has the custom variables for configure_env task.
 
-# This module will increment the PATH environment for the useful commands
 path_env:
   - { enabled: False,  name: 'just informative name',
       path: '{{ upstream_dir }}/project-tools/bin' }
-  - { enabled: True,  name: 'Compiled OpenSCAP Binaries',
+  - { enabled: False,  name: 'Compiled OpenSCAP Binaries',
       path: '{{ forks_dir }}/OpenSCAP/openscap/build' }
 
-# Variables related to "configure_env" module
 user_env_file: "{{ ansible_facts['user_dir'] }}/.bashrc"
 
 # This module will increment the PYTHONPATH environment for "utils" tools.
