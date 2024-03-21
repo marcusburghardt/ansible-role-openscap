@@ -11,6 +11,7 @@
   when:
     - item.enabled
     - item.type == "fork"
+    # result_forks_dir is defined in configure_env
     - result_forks_dir is success
 
 - name: "{{ role_name }} | {{ task.name }} | Check if the desired remote references are present"
@@ -40,7 +41,7 @@
 - name: "{{ role_name }} | {{ task.name }} | Ensure the forked Git repositories have desired remote references"
   community.general.ini_file:
     path: "{{ forks_dir }}/{{ item.dest }}/.git/config"
-    section: '[remote "{{ item.remote_name }}"]'
+    section: 'remote "{{ item.remote_name }}"'
     option: url
     value: "{{ item.remote }}"
   loop: "{{ git_repos }}"
