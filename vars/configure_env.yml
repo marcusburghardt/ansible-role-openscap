@@ -3,7 +3,7 @@
 
 path_env:
   - { enabled: false,  name: 'just informative name',
-      path: '{{ upstream_dir }}/project-tools/bin' }
+      path: '{{ forks_dir }}/project-tools/bin' }
   - { enabled: false,  name: 'Compiled OpenSCAP Binaries',
       path: '{{ forks_dir }}/OpenSCAP/openscap/build' }
 

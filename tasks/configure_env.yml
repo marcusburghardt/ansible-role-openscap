@@ -20,6 +20,7 @@
     path: "{{ forks_dir }}"
     state: directory
     mode: '0750'
+  register: result_forks_dir
   when:
     - result_base_dir is success
     - active_fork_repos is not skipped
