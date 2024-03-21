@@ -2,7 +2,7 @@ galaxy_info:
   author: Marcus Burghardt
   description: Role for quickly prepare a Development Environment for ComplianceAsCode projects.
   license: MPL
-  min_ansible_version: 2.11
+  min_ansible_version: 2.16
   platforms:
     - name: EL
       versions:

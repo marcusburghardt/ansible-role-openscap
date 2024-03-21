@@ -1,5 +1,6 @@
 ---
-- hosts: linux
+- name: 'Development Environment for ComplianceAsCode projects'
+  hosts: linux
   vars:
     - available_tasks:
       - { enabled: true, name: 'install_packages' }
@@ -8,7 +9,6 @@
       - { enabled: true, name: 'configure_env' }
       - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
       - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
-      - { enabled: true, name: 'configure_vscode' }
 
     - git_username: 'My Name Here'
     - git_email: 'myemail@example.com'

@@ -11,7 +11,6 @@ available_tasks:
   - { enabled: true, name: 'configure_env' }
   - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
   - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
-  - { enabled: true, name: 'configure_vscode' }         # Requires -K option
   
 # Everything created by this role will be limited to this directory scope, except for
 # users and OS specific settings.

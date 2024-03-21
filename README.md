@@ -1,16 +1,17 @@
 ansible-role-openscap
 =========
 
-This role will ensure the development environment for contributing with the OpenSCAP Ecosystem projects is properly installed and configured. So, you can skip, **for now**, the long reading documentation and start coding earlier. ;)
+This role will ensure the development environment for contributing with the OpenSCAP Ecosystem projects is properly installed and configured.
+You can skip, **for now**, the long reading documentation and start coding earlier. ;)
   
 All the variables you may want to change are defined in "defaults/main.yml".
-You can change directly there or, more elegantly, overridden them in your playbook.  
+You can change directly there or, more elegantly and recommended, overridden them in your Playbook.
 
 **This role will**:
 - Install all the necessary packages:
     - Packages required for development, tests and extra tools.
 - Install Python Modules:
-    - Install extra python modules necessary for CMakeTests or Json.
+    - Install extra python modules necessary for CMakeTests or JSON, for example.
 - Configure git:
     - Define the main editor
     - Ensure the name and email which will appear on commits
@@ -18,27 +19,19 @@ You can change directly there or, more elegantly, overridden them in your playbo
 - Configure the basic environment:
     - Create the main folder (~/OpenSCAP)
     - Update the PATH variable, if necessary.
-    - Create the Upstream sub-folder, if any upstream repository is enabled.
     - Create the Forks sub-folder, if any forked repository is enabled.
 - Configure Labs:
     - Copy the Vagrantfiles to ~/OpenSCAP/Labs/VMs
     - Copy instructions files for Labs and Tests related to VMs in Labs/VMs.
     - TODO: Copy instructions files for Labs and Tests related to Containers in Labs/Containers.
 - Populate the environment:
-    - Clone and update the "main" (Upstream) repositories, if any is enabled.
     - Clone the "fork" repositories, if any is present and enabled.
     - Clone and "lab" repositories, if any is present and enabled.
     - Copy the general instructions files to ~/OpenSCAP
-- Configure VSCode:
-    - OBS.: It is totally optional, but strongly recommended to use VSCode.
-    - Add the official repositories.
-    - Install and configure VSCode to already add ~/OpenSCAP in the Workspace.
-    - Install the main useful extensions.
-    - Make sure VSCode is updated.
 
 TODO
 ----
-- Actually a lot is expected. Just opened for constructive ideas.
+- Open for constructive ideas.
 
 To install this role
 ---------------------
@@ -57,15 +50,16 @@ Role Variables
 You can customize your environment in a very simple and centralized way editing some variables in:
 - defaults/main.yml
 
-However, I strongly recommend to override these variables in your playbook. 
-Also, this is much more elegant besides give you more flexibility. ;)
+However, I strongly recommend to override these variables in your Playbook. 
+This is much more elegant and gives you more flexibility. ;)
 
 To do so, explore the "defaults/main.yml", which is very well documented to clarify the
-purpose and effect of any variable. Then, just copy what your want to change in your playbook
+purpose and effect of any variable. Then, just copy what your want to change in your Playbook
 and adjust it as desired. Take a look in the Example Playbook section.
 
 In some rare cases, you may change some configuration to reflect your local environment in:
 - vars/*.yml
+If this was necessary for you by any reason, consider to propose a PR to improve the role.
 
 
 Dependencies
@@ -85,13 +79,12 @@ For this example, lets call this playbook file as `ansible_openscap.yml`, with t
 - hosts: linux
   vars:
     - available_tasks:
-      - { enabled: True, name: 'install_packages' }
-      - { enabled: True, name: 'configure_git' }
-      - { enabled: True, name: 'configure_env' }
-      - { enabled: True, name: 'populate_env' }
-      - { enabled: True, name: 'configure_vscode' }
-      - { enabled: True, name: 'configure_labs' }
-      - { enabled: True, name: 'install_python_modules' }
+      - { enabled: true, name: 'install_packages' }
+      - { enabled: true, name: 'configure_git' }
+      - { enabled: true, name: 'configure_env' }
+      - { enabled: true, name: 'populate_env' }
+      - { enabled: true, name: 'configure_labs' }
+      - { enabled: true, name: 'install_python_modules' }
   roles:
     - marcusburghardt.ansible_role_openscap
 ```
@@ -104,7 +97,6 @@ configure_git
 configure_env
 populate_env
 configure_labs
-configure_vscode
 install_python_modules
 
 ...lines omitted for better reading...

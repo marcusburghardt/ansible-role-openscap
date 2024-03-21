@@ -4,7 +4,6 @@ configure_git
 configure_env
 populate_env
 configure_labs
-configure_vscode
 install_python_modules
 
 [install_packages]
@@ -20,9 +19,6 @@ localhost ansible_connection=local
 localhost ansible_connection=local
 
 [configure_labs]
-localhost ansible_connection=local
-
-[configure_vscode]
 localhost ansible_connection=local
 
 [install_python_modules]
