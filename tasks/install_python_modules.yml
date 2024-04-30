@@ -1,6 +1,5 @@
 ---
 - name: "{{ role_name }} | {{ task.name }} | Ensure all Python modules are present via PIP"
-  become: true
   ansible.builtin.pip:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
