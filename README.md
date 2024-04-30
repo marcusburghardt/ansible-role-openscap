@@ -36,7 +36,7 @@ TODO
 To install this role
 ---------------------
 ```bash
-ansible-galaxy role install marcusburghardt.ansible_role_openscap
+ansible-galaxy role install marcusburghardt.openscap
 ```
 
 Requirements
@@ -86,7 +86,7 @@ For this example, lets call this playbook file as `ansible_openscap.yml`, with t
       - { enabled: true, name: 'configure_labs' }
       - { enabled: true, name: 'install_python_modules' }
   roles:
-    - marcusburghardt.ansible_role_openscap
+    - marcusburghardt.openscap
 ```
 Note that this ansible role was created by a group of specific tasks (available_tasks). You can disable and enable the tasks combination according to your demands.
 Considering the inventory file `hosts_openscap` is in the same folder, with the following content:
