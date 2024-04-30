@@ -13,11 +13,11 @@ available_tasks:
   
 # Everything created by this role will be limited to this directory scope, except for
 # users and OS specific settings.
-base_dir: "{{ ansible_facts['user_dir'] }}/OpenSCAP"
+base_dir: "{{ ansible_facts['user_dir'] }}/CaC"
 
 # Here is where you get your hands dirty. :)
 # Once you create your fork, as explained in the STARTGUIDE.md, you only have to inform
-# it in your own Playbook, more specifically in the "git_repos" list.
+# it in your own Playbook, more specifically in the "cac_git_repos" list.
 forks_dir: "{{ base_dir }}/Forks"
 
 # There are some labs to get familiar with the project ecosystem. VMs are necessary for
@@ -34,7 +34,7 @@ labs_dir: "{{ base_dir }}/Labs"
 # - lab:  Repositories with this "type" are cloned to the "Labs" folder. Usually you
 #         don't need these labs, but they are good if you like hands-on approach.
 #         Instructions regarding the labs are provided in INSTRUCTIONS_LABS.md file.
-git_repos:
+cac_git_repos:
   - { enabled: false, type: 'lab', name: 'RedHatDemos->SecurityDemos',
       repo: 'https://github.com/RedHatDemos/SecurityDemos.git',
       dest: 'RedHatDemos/SecurityDemos' }

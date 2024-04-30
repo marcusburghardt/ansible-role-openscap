@@ -10,7 +10,7 @@
   ansible.builtin.debug:
     msg: "It is necessary to ensure the {{ forks_dir }} directory"
   register: active_fork_repos
-  when: "(git_repos 
+  when: "(cac_git_repos
     | selectattr('enabled', 'search', 'true')
     | selectattr('type', 'search', 'fork')
     | list )"

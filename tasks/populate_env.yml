@@ -5,7 +5,7 @@
     dest: "{{ forks_dir }}/{{ item.dest }}"
     clone: true
     update: true
-  loop: "{{ git_repos }}"
+  loop: "{{ cac_git_repos }}"
   register: result_git_fork
   ignore_errors: true
   when:
@@ -19,7 +19,7 @@
     name: "{{ forks_dir }}/{{ item.dest }}/.git/config"
     line: '[remote "{{ item.remote_name }}"]'
     state: absent
-  loop: "{{ git_repos }}"
+  loop: "{{ cac_git_repos }}"
   register: result_git_remote_check
   check_mode: true
   changed_when: false
@@ -44,7 +44,7 @@
     section: 'remote "{{ item.remote_name }}"'
     option: url
     value: "{{ item.remote }}"
-  loop: "{{ git_repos }}"
+  loop: "{{ cac_git_repos }}"
   when:
     - item.enabled
     - item.type == "fork"
