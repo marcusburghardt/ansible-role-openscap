@@ -7,7 +7,6 @@
 available_tasks:
   - { enabled: true, name: 'install_packages' }         # Requires -K option
   - { enabled: true, name: 'install_python_modules' }
-  - { enabled: true, name: 'configure_git' }
   - { enabled: true, name: 'configure_env' }
   - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
   - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
@@ -24,17 +23,6 @@ forks_dir: "{{ base_dir }}/Forks"
 # There are some labs to get familiar with the project ecosystem. VMs are necessary for
 # these labs. The same VMs are also useful for testing. See STARTGUIDE.md.
 labs_dir: "{{ base_dir }}/Labs"
-
-# Username and email defined in git settings will be visible in your public commits.
-git_username: 'Name Surname'
-git_email: 'myemail@mydomain.com'
-git_editor: 'vim'
-git_autocrlf: 'input'
-
-# When working with many branches it is useful to see the current branch in the PS1
-# environment variable. If the below variable is enabled, the PS1 will get a nice and
-# simple update which can help the navigation between branches.
-ps1_update: false
 
 # These repositories are usually what your need to work in the project.
 # For this environment, the role is using two "types" of repositories:

@@ -55,16 +55,4 @@
   when:
     - item.enabled
     - result_path_env_ensure is success or result_path_env_ensure is skipped
-
-- name: "{{ role_name }} | {{ task.name }} | Update the PS1 environment variable to show git branches"
-  ansible.builtin.blockinfile:
-    path: "{{ user_env_file }}"
-    backup: true
-    block: |
-      parse_git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-      }
-      export PS1="[\u@\h \[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\]]$ "
-  when:
-    - ps1_update
 ...
