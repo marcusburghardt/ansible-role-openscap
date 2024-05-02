@@ -14,6 +14,19 @@
     # result_forks_dir is defined in configure_env
     - result_forks_dir is success
 
+- name: "{{ role_name }} | {{ task.name }} | Ensure local Git settings for the repositories"
+  community.general.ini_file:
+    path: "{{ forks_dir }}/{{ item[0].dest }}/.git/config"
+    section: "{{ item[1].section }}"
+    option: "{{ item[1].parameter }}"
+    value: "{{ item[1].value }}"
+    mode: '0640'
+  loop: "{{ cac_git_repos | product(cac_git_config) | list }}"
+  when:
+    - item[0].enabled
+    - item[1].enabled
+    - result_git_fork is success
+
 - name: "{{ role_name }} | {{ task.name }} | Check if the desired remote references are present"
   ansible.builtin.lineinfile:
     name: "{{ forks_dir }}/{{ item.dest }}/.git/config"

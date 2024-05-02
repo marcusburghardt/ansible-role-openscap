@@ -9,13 +9,13 @@
       - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
       - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
 
-    - git_username: 'My Name Here'
-    - git_email: 'myemail@example.com'
+    - cac_git_username: 'My Name Here'
+    - cac_git_email: 'myemail@example.com'
 
     - cac_git_repos:
       - { enabled: false, type: 'fork', name: 'ComplianceAsCode(fork)->content',
           repo: 'https://github.com/myid/content.git',
-          dest: 'ComplianceAsCode/content',
+          dest: 'content',
           remote: 'https://github.com/ComplianceAsCode/content.git',
           remote_name: 'upstream' }
 

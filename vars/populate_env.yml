@@ -4,4 +4,11 @@
 general_instructions_files:
   - "STARTGUIDE.md"
   - "COMMON_COMMANDS.md"
+
+# These are settings for the "user" section inside the git config file.
+cac_git_config:
+  - { enabled: true, state: 'present',
+      section: 'user', parameter: 'name', value: '{{ cac_git_username }}' }
+  - { enabled: true, state: 'present',
+      section: 'user', parameter: 'email', value: '{{ cac_git_email }}' }
 ...
