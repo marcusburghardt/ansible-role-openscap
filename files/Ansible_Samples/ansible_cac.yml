@@ -5,7 +5,6 @@
     - available_tasks:
       - { enabled: true, name: 'install_packages' }
       - { enabled: true, name: 'install_python_modules' }
-      - { enabled: true, name: 'configure_git' }
       - { enabled: true, name: 'configure_env' }
       - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
       - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
@@ -13,9 +12,7 @@
     - git_username: 'My Name Here'
     - git_email: 'myemail@example.com'
 
-    - ps1_update: true
-
-    - git_repos:
+    - cac_git_repos:
       - { enabled: false, type: 'fork', name: 'ComplianceAsCode(fork)->content',
           repo: 'https://github.com/myid/content.git',
           dest: 'ComplianceAsCode/content',

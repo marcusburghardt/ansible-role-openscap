@@ -1,25 +1,21 @@
 [linux:children]
 install_packages
-configure_git
-configure_env
-populate_env
-configure_labs
 install_python_modules
+configure_env
+configure_labs
+populate_env
 
 [install_packages]
 localhost ansible_connection=local
 
-[configure_git]
+[install_python_modules]
 localhost ansible_connection=local
 
 [configure_env]
 localhost ansible_connection=local
 
-[populate_env]
-localhost ansible_connection=local
-
 [configure_labs]
 localhost ansible_connection=local
 
-[install_python_modules]
+[populate_env]
 localhost ansible_connection=local
