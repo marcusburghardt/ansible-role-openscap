@@ -15,8 +15,8 @@
     mode: '0750'
   register: result_labs_dir
   when:
-    # result_base_dir is defined in configure_env
-    - result_base_dir is success
+    # result_cac_base_dir is defined in configure_env
+    - result_cac_base_dir is success
     - active_lab_repos is not skipped
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure the labs repositories are updated"

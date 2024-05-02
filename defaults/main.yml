@@ -17,19 +17,19 @@ cac_git_email: 'myemail@mydomain.com'
 
 # Everything created by this role will be limited to this directory scope, except for
 # users and OS specific settings.
-base_dir: "{{ ansible_facts['user_dir'] }}/CaC"
+cac_base_dir: "{{ ansible_facts['user_dir'] }}/CaC"
 
 # Here is where you get your hands dirty. :)
 # Once you create your fork, as explained in the STARTGUIDE.md, you only have to inform
 # it in your own Playbook, more specifically in the "cac_git_repos" list.
-forks_dir: "{{ base_dir }}/Forks"
+forks_dir: "{{ cac_base_dir }}/Forks"
 
 # There are some labs to get familiar with the project ecosystem. VMs are necessary for
 # these labs. The same VMs are also useful for testing. See STARTGUIDE.md.
-labs_dir: "{{ base_dir }}/Labs"
+labs_dir: "{{ cac_base_dir }}/Labs"
 
 # Directory to store some files with useful hints for day-to-day activities.
-docs_dir: "{{ base_dir }}/Docs"
+docs_dir: "{{ cac_base_dir }}/Docs"
 
 # These repositories are usually what your need to work in the project.
 # For this environment, the role is using two "types" of repositories:

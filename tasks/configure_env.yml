@@ -1,10 +1,10 @@
 ---
 - name: "{{ role_name }} | {{ task.name }} | Ensure the base working directory"
   ansible.builtin.file:
-    path: "{{ base_dir }}"
+    path: "{{ cac_base_dir }}"
     state: directory
     mode: '0750'
-  register: result_base_dir
+  register: result_cac_base_dir
 
 - name: "{{ role_name }} | {{ task.name }} | Check for active repositories of type fork"
   ansible.builtin.debug:
@@ -22,7 +22,7 @@
     mode: '0750'
   register: result_forks_dir
   when:
-    - result_base_dir is success
+    - result_cac_base_dir is success
     - active_fork_repos is not skipped
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure the {{ docs_dir }} directory"
@@ -32,7 +32,7 @@
     mode: '0750'
   register: result_docs_dir
   when:
-    - result_base_dir is success
+    - result_cac_base_dir is success
 
 - name: "{{ role_name }} | {{ task.name }} | Check the existence of PATH environment variable"
   ansible.builtin.replace:
