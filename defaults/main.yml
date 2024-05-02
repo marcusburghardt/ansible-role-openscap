@@ -4,7 +4,7 @@
 # Some tasks need admin permissions. This will be done with "become" parameter of Ansible.
 # The default method is "sudo". So, ensure your username has sudo permissions to install
 # packages and change system files, such as repository files.
-available_tasks:
+cac_tasks:
   - { enabled: true, name: 'install_packages' }         # Requires -K option
   - { enabled: true, name: 'install_python_modules' }
   - { enabled: true, name: 'configure_env' }

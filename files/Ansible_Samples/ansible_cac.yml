@@ -2,7 +2,7 @@
 - name: 'Development Environment for ComplianceAsCode projects'
   hosts: linux
   vars:
-    - available_tasks:
+    - cac_tasks:
       - { enabled: true, name: 'install_packages' }
       - { enabled: true, name: 'install_python_modules' }
       - { enabled: true, name: 'configure_env' }
