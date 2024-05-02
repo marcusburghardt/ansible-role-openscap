@@ -9,7 +9,7 @@
     gpgkey: "{{ item.gpgkey }}"
     enabled: yes
     state: "{{ item.state }}"
-  loop: "{{ linux_repos }}"
+  loop: "{{ cac_linux_repos }}"
   when:
     - item.enabled
     - ansible_facts['os_family']|lower == "redhat"

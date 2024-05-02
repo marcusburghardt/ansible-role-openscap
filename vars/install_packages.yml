@@ -2,7 +2,7 @@
 # This file has the custom configurations for install_packages task.
 # Use this entry as reference but prefer to define your desired repositories in your own Playbook.
 
-linux_repos:
+cac_linux_repos:
   - { enabled: false,  state: 'present', name: 'short-name',
       description: 'Short Description',
       repo: 'https://<repository url>', 
