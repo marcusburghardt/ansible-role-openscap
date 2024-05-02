@@ -28,6 +28,9 @@ forks_dir: "{{ base_dir }}/Forks"
 # these labs. The same VMs are also useful for testing. See STARTGUIDE.md.
 labs_dir: "{{ base_dir }}/Labs"
 
+# Directory to store some files with useful hints for day-to-day activities.
+docs_dir: "{{ base_dir }}/Docs"
+
 # These repositories are usually what your need to work in the project.
 # For this environment, the role is using two "types" of repositories:
 # - fork: Repositories with this "type" are cloned into the "Forks" folder.

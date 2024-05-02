@@ -39,6 +39,7 @@
   when:
     - item.enabled
     - item.type == "fork"
+    - item.remote is not false
     - result_git_fork is success
 
 - name: "{{ role_name }} | {{ task.name }} | Add remote references for forked Git repositories"
@@ -61,17 +62,18 @@
   when:
     - item.enabled
     - item.type == "fork"
+    - item.remote is not false
     - result_git_remote_add is skipped
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure the main instructions files"
   ansible.builtin.copy:
-    dest: "{{ base_dir }}"
+    dest: "{{ docs_dir }}"
     mode: '0664'
     src: "{{ role_path }}/files/{{ item }}"
     force: true
     backup: true
   loop: "{{ general_instructions_files }}"
   when:
-    # result_base_dir is defined in configure_env
-    - result_base_dir is success
+    # result_docs_dir is defined in configure_env
+    - result_docs_dir is success
 ...
