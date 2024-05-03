@@ -6,10 +6,10 @@
 # packages and change system files, such as repository files.
 cac_tasks:
   - { enabled: true, name: 'install_packages' }         # Requires -K option
-  - { enabled: true, name: 'install_python_modules' }
   - { enabled: true, name: 'configure_env' }
   - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
   - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
+  - { enabled: true, name: 'install_python_modules' }   # Depends on 'populate_env'
 
 # Username and email defined in git settings will be visible in your public commits.
 cac_git_username: 'Name Surname'

@@ -1,9 +1,9 @@
 [linux:children]
 install_packages
-install_python_modules
 configure_env
 configure_labs
 populate_env
+install_python_modules
 
 [install_packages]
 localhost ansible_connection=local

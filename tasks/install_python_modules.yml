@@ -1,8 +1,27 @@
 ---
-- name: "{{ role_name }} | {{ task.name }} | Ensure all Python modules are present via PIP"
+- name: "{{ role_name }} | {{ task.name }} | Locate content repository"
+  ansible.builtin.set_fact:
+    content_repo: "{{ cac_git_repos |
+      selectattr('remote', 'eq', 'https://github.com/ComplianceAsCode/content.git') }}"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure all Base Python modules are installed"
   ansible.builtin.pip:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  loop: "{{ pip_modules }}"
-  when: item.enabled
+    requirements: "{{ forks_dir }}/{{ content_repo[0].dest }}/requirements-base.txt"
+  when:
+    - content_repo
+    - cac_base_python_modules
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure all Python modules used for Development are installed"
+  ansible.builtin.pip:
+    requirements: "{{ forks_dir }}/{{ content_repo[0].dest }}/requirements.txt"
+  when:
+    - content_repo
+    - cac_dev_python_modules
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure all Python modules used for Tests are installed"
+  ansible.builtin.pip:
+    requirements: "{{ forks_dir }}/{{ content_repo[0].dest }}/test-requirements.txt"
+  when:
+    - content_repo
+    - cac_test_python_modules
 ...

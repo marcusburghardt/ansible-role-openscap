@@ -4,10 +4,10 @@
   vars:
     - cac_tasks:
       - { enabled: true, name: 'install_packages' }
-      - { enabled: true, name: 'install_python_modules' }
       - { enabled: true, name: 'configure_env' }
       - { enabled: true, name: 'configure_labs' }           # Depends on 'configure_env'
       - { enabled: true, name: 'populate_env' }             # Depends on 'configure_env'
+      - { enabled: true, name: 'install_python_modules' }   # Depends on 'populate_env'
 
     - cac_git_username: 'My Name Here'
     - cac_git_email: 'myemail@example.com'

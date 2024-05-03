@@ -1,9 +1,12 @@
 ---
 # This file has the custom configurations for install_python_modules task.
 
-pip_modules:
-  - { enabled: true,  state: 'present', name: 'json2html' }
-  - { enabled: true,  state: 'present', name: 'pytest-cov' }
-  - { enabled: true,  state: 'present', name: 'ruamel.yaml' }
-  - { enabled: true,  state: 'present', name: 'yamlpath' }
+# Modules specified in content/requirements-base.txt
+cac_base_python_modules: true
+
+# Modules used for Development are specified in content/requirements.txt
+cac_dev_python_modules: true
+
+# Modules used for Tests are specified in content/test-requirements.txt
+cac_test_python_modules: true
 ...
