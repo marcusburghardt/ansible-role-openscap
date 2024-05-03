@@ -50,13 +50,13 @@ gpgcheck=0" > /etc/yum.repos.d/cac.repo
   echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
   echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
   useradd -G wheel admin && echo "admin123" | passwd --stdin admin
-  dnf install openscap-scanner tar qemu-guest-agent openssh-clients openssh-server -y
+  dnf install openscap-scanner tar qemu-guest-agent openssh-clients openssh-server vim -y
   SCRIPT
   config.vm.provision "shell", inline: $bootstrap
 
   # Here we are actually defining the Box image and the VM name to be provisioned.
   # If you want another version, you can change here.
-  VM_NAME = "rhel84"
+  VM_NAME = "rhel8"
   VM_BOX = "generic/rhel8"
 
   config.vm.define VM_NAME do |rhel|

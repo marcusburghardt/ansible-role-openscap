@@ -26,8 +26,8 @@ Vagrant.configure("2") do |config|
 
   # Here we are actually defining the Box image and the VM name to be provisioned.
   # If you want another version, you can change here.
-  VM_NAME = "ubuntu2004"
-  VM_BOX = "generic/ubuntu2004"
+  VM_NAME = "ubuntu2204"
+  VM_BOX = "generic/ubuntu2204"
 
   config.vm.define VM_NAME do |ubuntu|
     ubuntu.vm.box = VM_BOX
