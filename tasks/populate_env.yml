@@ -68,7 +68,7 @@
 - name: "{{ role_name }} | {{ task.name }} | Ensure the main instructions files"
   ansible.builtin.copy:
     dest: "{{ docs_dir }}"
-    mode: '0664'
+    mode: '0640'
     src: "{{ role_path }}/files/{{ item }}"
     force: true
     backup: true
