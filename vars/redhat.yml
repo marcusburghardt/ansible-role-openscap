@@ -3,8 +3,8 @@
 
 ansible_python_interpreter: /usr/bin/python3
 
-packages:
-  # Packages for ComplianceAsCode/content
+# Packages for ComplianceAsCode/content
+cac_base_packages:
   - ansible-lint
   - bats
   - cmake
@@ -29,12 +29,30 @@ packages:
   - python3-pytest
   - python3-pyyaml
   - python3-sphinx
+  - rpm-build
   - scap-workbench
   - scap-security-guide
   - ShellCheck
   - yamllint
 
+# Packages used to create test VMs
+cac_vms_packages:
+  - ansible
+  - edk2-ovmf
+  - expect
+  - libvirt
+  - libvirt-client
+  - libvirt-daemon
+  - openssh-clients
+  - podman
+  - python3-libvirt
+  - vagrant
+  - virt-install
+  - virt-manager
+  - virt-viewer
+
   # Packages for OpenSCAP project
+openscap_packages:
   - asciidoc        # OpenSCAP
   - autoconf        # OpenSCAP
   - automake        # OpenSCAP
@@ -62,31 +80,4 @@ packages:
   - swig            # OpenSCAP
   - xmlsec1-devel   # OpenSCAP
   - xmlsec1-openssl-devel # OpenSCAP
-
-  # Packages used to create test VMs
-  - ansible
-  - edk2-ovmf
-  - expect
-  - libvirt
-  - libvirt-client
-  - libvirt-daemon
-  - openssh-clients
-  - podman
-  - python3-libvirt
-  - vagrant
-  - virt-install
-  - virt-manager
-  - virt-viewer
-
-  # Optional packages for better work or collaboration
-  - bzip2
-  - curl
-  - gnupg
-  - ltrace
-  - procps-ng
-  - rpm-build
-  - strace
-  - vim
-  - wget
-  - which
 ...

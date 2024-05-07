@@ -14,10 +14,21 @@
     - item.enabled
     - ansible_facts['os_family']|lower == "redhat"
 
-- name: "{{ role_name }} | {{ task.name }} | Ensure all packages are installed"
+- name: "{{ role_name }} | {{ task.name }} | Ensure CaC base packages are installed"
   become: true
   ansible.builtin.package:
-    name: "{{ item }}"
+    name: "{{ cac_base_packages }}"
     state: present
-  loop: "{{ packages }}"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure Test VMs related packages are installed"
+  become: true
+  ansible.builtin.package:
+    name: "{{ cac_vms_packages }}"
+    state: present
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure OpenSCAP related packages are installed"
+  become: true
+  ansible.builtin.package:
+    name: "{{ openscap_packages }}"
+    state: present
 ...
