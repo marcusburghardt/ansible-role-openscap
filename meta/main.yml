@@ -12,7 +12,7 @@ galaxy_info:
         - all
   galaxy_tags:
     - development
-    - devop
+    - devops
     - openscap
     - complianceascode
 dependencies: []
