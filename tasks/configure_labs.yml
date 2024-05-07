@@ -25,6 +25,7 @@
     dest: "{{ labs_dir }}/{{ item.dest }}"
     clone: true
     update: true
+  ignore_errors: true
   loop: "{{ cac_git_repos }}"
   when:
     - item.enabled
