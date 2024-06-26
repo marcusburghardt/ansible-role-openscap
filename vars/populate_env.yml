@@ -5,6 +5,9 @@ general_instructions_files:
   - "STARTGUIDE.md"
   - "COMMON_COMMANDS.md"
 
+cac_supporting_scripts:
+  - "cac_review_pr.py"
+
 # These are settings for the "user" section inside the git config file.
 cac_git_config:
   - { enabled: true, state: 'present',

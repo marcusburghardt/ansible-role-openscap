@@ -34,6 +34,13 @@
   when:
     - result_cac_base_dir is success
 
+- name: "{{ role_name }} | {{ task.name }} | Ensure the {{ cac_scripts_dir }} directory"
+  ansible.builtin.file:
+    path: "{{ cac_scripts_dir }}"
+    state: directory
+    mode: '0750'
+  register: result_cac_scripts_dir
+
 - name: "{{ role_name }} | {{ task.name }} | Check the existence of PATH environment variable"
   ansible.builtin.replace:
     dest: "{{ user_env_file }}"

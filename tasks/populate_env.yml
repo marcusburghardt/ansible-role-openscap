@@ -76,4 +76,15 @@
   when:
     # result_docs_dir is defined in configure_env
     - result_docs_dir is success
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the presence of supporting scripts"
+  ansible.builtin.copy:
+    dest: "{{ cac_scripts_dir }}"
+    mode: '0700'
+    src: "{{ role_path }}/files/scripts/{{ item }}"
+    force: true
+    backup: false
+  loop: "{{ cac_supporting_scripts }}"
+  when:
+    - result_cac_scripts_dir is success
 ...
