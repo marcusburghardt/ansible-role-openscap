@@ -121,5 +121,6 @@ Author Information
 ------------------
 
 Marcus Burghardt
-- https://github.com/marcusburghardt/
-- https://www.linkedin.com/in/marcusburghardt/
+- [https://buymeacoffee.com/marcusburghardt](https://buymeacoffee.com/marcusburghardt)
+- [https://github.com/marcusburghardt](https://github.com/marcusburghardt)
+- [https://www.linkedin.com/in/marcusburghardt](https://www.linkedin.com/in/marcusburghardt)
