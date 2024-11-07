@@ -44,7 +44,7 @@
 - name: "{{ role_name }} | {{ task.name }} | Check the existence of PATH environment variable"
   ansible.builtin.replace:
     dest: "{{ user_env_file }}"
-    regexp: '^export PATH='
+    regexp: '^export PATH=.*'
     replace: 'export PATH=""'
   check_mode: true
   changed_when: false
@@ -57,7 +57,7 @@
     line: 'export PATH="$PATH"'
   register: result_path_env_ensure
   when:
-    - result_path_env_check is not changed
+    - result_path_env_check is not search("replacements made")
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure PATH environment variable is updated"
   ansible.builtin.lineinfile:
